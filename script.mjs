@@ -48,7 +48,7 @@ Next, we will level up our approach using Classes.
  * 
  * 
  * ***/
-console.log(`\n--------------------------FIRST PART--------------------------`);
+console.log(`\n-------------------------- PART 1 --------------------------`);
 const adventurer = {
   name: "Robin",
   health: 10,
@@ -106,9 +106,7 @@ While progress has been made, this is still not the most efficient way to create
  * 
  * 
  * * */
-console.log(
-  `\n--------------------------SECOND PART--------------------------`
-);
+console.log(`\n-------------------------- PART 2 --------------------------`);
 
 class Character {
   constructor(name) {
@@ -132,5 +130,79 @@ robin.companion.companion.inventory = ["small hat", "sunglasses"];
 robin.roll();
 robin.roll();
 robin.roll();
-
 console.log(robin);
+
+/***
+ * Part 3: Class Features
+When extending a class, the “child” class inherits all properties of its parents. This means that we do not need to account for the name, health, inventory, or roll method of Character children classes.
+Let’s begin by creating an Adventurer class. What attributes might be specific to an adventure, but that not all characters have? Take a look at our example below, and expand upon it with your own properties and methods.
+class Adventurer extends Character {
+  constructor (name, role) {
+    super(name);
+    // Adventurers have specialized roles.
+    this.role = role;
+    // Every adventurer starts with a bed and 50 gold coins.
+    this.inventory.push("bedroll", "50 gold coins");
+  }
+  // Adventurers have the ability to scout ahead of them.
+  scout () {
+    console.log(`${this.name} is scouting ahead...`);
+    super.roll();
+  }
+}
+What else should an adventurer be able to do? What other properties should they have?
+Next, create a Companion class with properties and methods specific to the companions.
+Finally, change the declaration of Robin and the companions to use the new Adventurer and Companion classes.
+ * 
+ * 
+ * *** */
+console.log(`\n-------------------------- PART 3 --------------------------`);
+class Adventurer extends Character {
+  constructor(name, role) {
+    super(name);
+    // Adventurers have specialized roles.
+    this.role = role;
+    // Every adventurer starts with a bed and 50 gold coins.
+    this.inventory.push("bedroll", "50 gold coins");
+  }
+  // Adventurers have the ability to scout ahead of them.
+  scout() {
+    console.log(`${this.name} is scouting ahead...`);
+    super.roll();
+  }
+}
+
+class Companion extends Character {
+  constructor(name, type) {
+    super(name);
+    this.type = type;
+  }
+}
+
+const robinNew = new Adventurer("Robin", "Fighter");
+robinNew.inventory = ["sword", "potion", "artifact"];
+robinNew.companion = new Companion("Leo");
+robinNew.companion.type = "Cat";
+robinNew.companion.companion = new Companion("Frank");
+robinNew.companion.companion.type = "Flea";
+robinNew.companion.companion.inventory = ["small hat", "sunglasses"];
+robinNew.roll();
+robinNew.roll();
+robinNew.roll();
+console.log(robinNew);
+
+/******
+ * 
+ * 
+Part 4: Class Uniforms
+Using static properties and methods, you can create uniform attributes for the class itself rather than instances of the class. Static properties are typically constant values that can be used elsewhere for reference, or utility methods that do not rely on the values of a specific class instance.
+Using the static keyword:
+Add a static MAX_HEALTH property to the Character class, equal to 100.
+Add a static ROLES array to the Adventurer class, with the values “Fighter,” “Healer,” and “Wizard.” Feel free to add other roles, if you desire!
+Add a check to the constructor of the Adventurer class that ensures the given role matches one of these values.
+Are there other static properties or methods that make sense to add to these classes?
+ * 
+ * 
+ * 
+ * * */
+console.log(`\n-------------------------- PART 4 --------------------------`);
